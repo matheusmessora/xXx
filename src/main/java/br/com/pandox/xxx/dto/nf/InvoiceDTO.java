@@ -8,4 +8,5 @@ public class InvoiceDTO {
     public Integer cnpj;
 
 
+
 }

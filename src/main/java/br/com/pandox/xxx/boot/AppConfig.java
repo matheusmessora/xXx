@@ -120,9 +120,34 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public EmbeddedCacheManager cache() {
-        DefaultCacheManager defaultCacheManager = new DefaultCacheManager();
-
-        return defaultCacheManager;
+        return new DefaultCacheManager();
     }
+
+
+//    @Bean
+//    protected ServletContextTemplateResolver getTemplateResolver() {
+//
+//        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+//                templateResolver.setPrefix("/WEB-INF/templates/");
+//        templateResolver.setSuffix(".xhtml");
+//        templateResolver.setTemplateMode("XHTML");
+//        return templateResolver;
+//    }
+//
+//    @Bean
+//    protected SpringTemplateEngine getSpringTemplateEngine() {
+//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//        templateEngine.setTemplateResolver(getTemplateResolver());
+//        return templateEngine;
+//    }
+//
+//    @Bean
+//    protected ViewResolver getViewResolver() {
+//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//        viewResolver.setTemplateEngine(getSpringTemplateEngine());
+//        viewResolver.setCharacterEncoding("UTF-8");
+//        viewResolver.setContentType("text/html; charset=UTF-8");
+//        return viewResolver;
+//    }
 
 }

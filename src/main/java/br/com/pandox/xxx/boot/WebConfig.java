@@ -9,11 +9,11 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
 
-	@Override
-	protected void addInterceptors(InterceptorRegistry registry) {
-		WebContentInterceptor interceptor = new WebContentInterceptor();
-		interceptor.setAlwaysUseFullPath(true);
-	}
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        WebContentInterceptor interceptor = new WebContentInterceptor();
+        interceptor.setAlwaysUseFullPath(true);
+    }
 
 }
 

@@ -32,7 +32,6 @@ public class Invoice {
 
     public Invoice(InvoiceDTO dto) {
         this.value = dto.value;
-        this.date = dto.date;
         this.coo = dto.coo;
         this.status = 0;
         this.cnpj = dto.cnpj;

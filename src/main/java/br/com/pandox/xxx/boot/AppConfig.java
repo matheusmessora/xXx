@@ -29,7 +29,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.Properties;
 
 /**
- * Classe de configuração Spring MVC 3
+ * Classe de configuração Spring MVC
  */
 @Configuration
 @PropertySource("classpath:config.properties")

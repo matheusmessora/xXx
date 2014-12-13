@@ -1,5 +1,5 @@
 *.class
-api.iml
+*.iml
 .idea/
 workspace.xml
 

@@ -23,9 +23,16 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -36,8 +43,8 @@ import java.util.Properties;
 @ComponentScan(nameGenerator = NameGenerator.class, basePackages = "br.com.pandox.xxx", excludeFilters = @Filter(Configuration.class))
 @EnableTransactionManagement
 @EnableJpaRepositories("br.com.pandox.xxx.repo")
-@EnableWebMvc
 @EnableAsync
+@EnableWebMvc
 @EnableScheduling
 public class AppConfig extends WebMvcConfigurerAdapter {
     private static Logger log = Logger.getLogger(AppConfig.class);
@@ -123,31 +130,36 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return new DefaultCacheManager();
     }
 
+    @Bean
+    protected TemplateResolver getTemplateResolver() {
 
-//    @Bean
-//    protected ServletContextTemplateResolver getTemplateResolver() {
-//
-//        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-//                templateResolver.setPrefix("/WEB-INF/templates/");
-//        templateResolver.setSuffix(".xhtml");
-//        templateResolver.setTemplateMode("XHTML");
-//        return templateResolver;
-//    }
-//
-//    @Bean
-//    protected SpringTemplateEngine getSpringTemplateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.setTemplateResolver(getTemplateResolver());
-//        return templateEngine;
-//    }
-//
-//    @Bean
-//    protected ViewResolver getViewResolver() {
-//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//        viewResolver.setTemplateEngine(getSpringTemplateEngine());
-//        viewResolver.setCharacterEncoding("UTF-8");
-//        viewResolver.setContentType("text/html; charset=UTF-8");
-//        return viewResolver;
-//    }
+        TemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF/thymeleaf/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setCacheable(false);
+        return templateResolver;
+    }
+
+    @Bean
+    protected SpringTemplateEngine getTemplateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(getTemplateResolver());
+        return templateEngine;
+    }
+
+    @Bean
+    protected ContentNegotiatingViewResolver getViewResolver() {
+        ContentNegotiatingViewResolver viewResolver = new ContentNegotiatingViewResolver();
+
+        ArrayList<ViewResolver> viewResolvers = new ArrayList<ViewResolver>();
+        ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
+        thymeleafViewResolver.setTemplateEngine(getTemplateEngine());
+        thymeleafViewResolver.setOrder(1);
+
+        viewResolvers.add(thymeleafViewResolver);
+        viewResolver.setViewResolvers(viewResolvers);
+        return viewResolver;
+    }
 
 }

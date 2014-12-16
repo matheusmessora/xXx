@@ -25,7 +25,7 @@
     </appender>
 
     <!-- Project loggers -->
-    <logger name="pandox" additivity="true">
+    <logger name="br.com.pandox.xxx" additivity="true">
         <level value="INFO"/>
         <appender-ref ref="FileAppender"/>
     </logger>
@@ -59,7 +59,7 @@
 
     <!-- Default -->
     <root>
-        <level value="DEBUG"/>
+        <level value="INFO"/>
         <appender-ref ref="MyConsoleAppender"/>
     </root>
 

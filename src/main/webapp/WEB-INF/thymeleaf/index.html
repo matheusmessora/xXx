@@ -9,5 +9,8 @@
 </head>
 <body>
 <div>
-   .
+    <tr th:each="invoice : ${invoices}">
+        <td th:text="${invoice.id}">1</td>
+        <td><a href="#" th:text="${invoice.coo}">COO ...</a></td>
+    </tr>
 </div></body></html>

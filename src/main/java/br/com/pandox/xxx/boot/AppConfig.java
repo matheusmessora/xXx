@@ -11,10 +11,8 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -31,8 +29,6 @@ import java.util.ArrayList;
  */
 @Configuration
 @ComponentScan(nameGenerator = NameGenerator.class, basePackages = "br.com.pandox.xxx", excludeFilters = @Filter(Configuration.class))
-@EnableTransactionManagement
-@EnableJpaRepositories("br.com.pandox.xxx.repo")
 @EnableAsync
 @EnableWebMvc
 @EnableScheduling

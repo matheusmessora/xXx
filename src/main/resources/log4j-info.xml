@@ -11,14 +11,14 @@
     </appender>
 
     <appender name="FileAppender" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/export/logs/pb-frontend/pb-frontend.log"/>
+        <param name="File" value="/export/logs/xxx/pb-frontend.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS/zzz} [%t|%C{1}:%L] %3p - %m%n"/>
         </layout>
     </appender>
 
     <appender name="HibernateAppender" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/export/logs/pb-frontend/hibernate.log"/>
+        <param name="File" value="/export/logs/xxx/hibernate.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS/zzz} %m%n"/>
         </layout>

@@ -23,6 +23,7 @@ public class JettyServer {
         server.setHandler(getServletContextHandler(getContext()));
         server.start();
         server.join();
+
     }
 
     private static WebAppContext getServletContextHandler(WebApplicationContext context) throws
@@ -33,8 +34,6 @@ public class JettyServer {
         contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), MAPPING_URL);
         contextHandler.addEventListener(new ContextLoaderListener(context));
         contextHandler.setResourceBase("src/main/webapp/");
-//        contextHandler.setAttribute("log4jConfigLocation", "log4j-debug.xml");
-//        System.setProperty("log4jConfigLocation", "log4j-debug.xml");
         return contextHandler;
     }
 
